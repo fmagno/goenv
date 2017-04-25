@@ -1,0 +1,25 @@
+#!/bin/bash
+
+rpath=$(realpath $1);
+mkdir -p $rpath
+mkdir -p $rpath/bin/
+mkdir -p $rpath/pkg/
+mkdir -p $rpath/src/
+mkdir -p $rpath/.goenv
+
+function gopathsetprompt {
+    export PS1="[\[$(tput sgr0)\]\[\033[38;5;5m\]\t\[$(tput sgr0)\]\[\033[38;5;15m\]]\[$(tput sgr0)\]\[\033[38;5;2m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;6m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]: \[$(tput sgr0)\]\[\033[38;5;12m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]\n(go)\$ \[$(tput sgr0)\]"
+
+}
+
+cat > $rpath/activate << EOF
+#!/bin/bash
+
+bash --rcfile <(echo ". ~/.bashrc; export GOPATH=$rpath; GOBIN=$rpath/bin; export PATH=$rpath/bin:$rpath/.goenv:$PATH; gopathsetprompt")
+EOF
+
+cat > $rpath/.goenv/gopath << EOF
+#!/bin/bash
+echo \$GOPATH
+EOF
+chmod u+x $rpath/.goenv/gopath
