@@ -15,7 +15,7 @@ chmod u+x $rpath/.goenv/gopathsetprompt
 cat > $rpath/activate << EOF
 #!/bin/bash
 
-bash --rcfile <(echo ". ~/.bashrc; export GOPATH=$rpath; GOBIN=$rpath/bin; export PATH=$rpath/bin:$rpath/.goenv:$PATH; gopathsetprompt")
+bash --rcfile <(echo ". ~/.bashrc; export GOPATH=$rpath; GOBIN=$rpath/bin; export PATH=$rpath/bin:$rpath/.goenv:$PATH; source $rpath/.goenv/gopathsetprompt")
 EOF
 
 cat > $rpath/.goenv/gopath << EOF
