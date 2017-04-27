@@ -24,6 +24,5 @@ exit;   # or ^D to deactivate
 When you're back in the next day and wish to continue your work just do:
 
 ```sh
-cd $HOME/new_workspace
-source activate
+source $HOME/new_workspace/activate
 ```
